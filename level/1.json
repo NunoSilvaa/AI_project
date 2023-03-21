@@ -1,6 +1,6 @@
 {"level": 0,
-    "size": [6,10],
-    "start": [1,1],"end": [3,7],
+    "size": [6, 10],
+    "start": [1,1],"end": [3, 7],
     "box": {"symbol": "#","location": [[1,1]]},
     "tiles": {"floor": 1,"void": 0},
   "maps": [

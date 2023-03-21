@@ -34,14 +34,14 @@ class tile:
     def checkTile(self, box):
         for child in box.location:
             if child == self.location:
-                # Space
+                # void
                 if self.type == tile.VOID:
                     if self.obj != None:
                         if self.obj.symbol == "$":
                             return True
                         else: return False
                     else: return False
-                # Rock
+                # floor
                 elif self.type == tile.FLOOR: 
                     return True
         return False

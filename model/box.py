@@ -9,7 +9,7 @@ class Box:
         self.symbol = symbol
         self.active = False
         self.location = location
-        self.pre_location = location
+        self.preLocation = location
 
 
     def moveUp(self):
