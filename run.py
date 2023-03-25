@@ -25,7 +25,7 @@ class Level:
     lv15 = "./level/15.json"
     
     
-def main(level=Level.lv1, Play=True, view='3'):
+def main(level=Level.lv1, Play=True):
     print("Processing...")
     Maps = maps(level)
     size = Maps.size
@@ -69,7 +69,9 @@ if __name__=="__main__":
         level = sys.argv[1]
         option = sys.argv[2]
         if option != "play":
-            view = sys.argv[3]
+            print("Error! Please read file README.md for more details. thanks")
+            sys.exit()
+            
         if option == "play": 
             main(level=level, Play=True)
 
@@ -77,4 +79,4 @@ if __name__=="__main__":
             print("Error! Please read file README.md for more details. thanks")
     else:
         # Edit here
-        main(level=Level.lv1, Play=True, view='3')
+        main(level=Level.lv1, Play=True)
