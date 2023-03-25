@@ -1,3 +1,6 @@
+from drawing.box import Box as Cube
+
+
 class Direction:
     standing = 1
     horizontal = 2
@@ -133,4 +136,16 @@ class Box:
     
     def isStanding(self):
         return len(self.location) == Direction.standing
+    
+    def drawBox(self):
+        if len(self.location) == 2:
+            currLocation = self.location
+        else: currLocation = [self.location[0], self.location[0]]
+
+        if self.isStanding():
+            Cube.drawBox(position=(currLocation[0][1], currLocation[0][0]), size=(1, 1, 2), border_color=(0.8, 0.8, 0.8))
+        elif self.isVertical():
+            Cube.drawBox(position=(currLocation[1][1], currLocation[1][0]), size=(1, 2, 1), border_color=(0.8, 0.8, 0.8))
+        elif self.isHorizontal():
+            Cube.drawBox(position=(currLocation[0][1], currLocation[0][0]), size=(2, 1, 1), border_color=(0.8, 0.8, 0.8))
             

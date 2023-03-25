@@ -57,7 +57,7 @@ def main(level=Level.lv1, Play=True,Algorithm=None):
                 if display.quit(event):
                     return
             Maps.drawMaps()
-            Maps.drawBox()
+            Maps.currBox.drawBox()
             display.update()
 
             if control.checkGoal():
