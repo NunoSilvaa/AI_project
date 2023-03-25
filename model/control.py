@@ -1,10 +1,7 @@
 import sys
 from drawing.box import Box as Cube
-from model.box import Box 
 from model.map import maps as levelMap
 from model.tiles import tile as Tile
-
-import numpy as np
 
 class Control:
     Play = False
@@ -13,88 +10,45 @@ class Control:
             print("Maps not None")
             sys.exit()
         
-        # BOX
-        self.boxStartLocation = levelMap.currBox.location
-        self.currBoxLocation = levelMap.currBox.location
-        
         # MAP
         self.levelMap = levelMap
-        self.startMap = self.levelMap.loadedMap[:]
-        self.currMap = self.startMap
-        self.size = levelMap.size
-        self.moves = (self.moveUp, self.moveDown, self.moveRight, self.moveLeft)
 
 
-    def moveUp(self):   
+    def moveUp(self):  
         self.levelMap.currBox.moveUp()
-        if not self.checkBoxOnMaps():
-            return False
-        else:
-            self.updateLocation()
-            return self 
+        return self.checkBoxOnMaps()
     
     def moveDown(self):
+        
         self.levelMap.currBox.moveDown()
-        if not self.checkBoxOnMaps():
-            return False
-        else:
-            self.updateLocation() 
-            return self 
+        return self.checkBoxOnMaps()
     
     def moveRight(self):
+        
         self.levelMap.currBox.moveRight()
-        if not self.checkBoxOnMaps():
-            return False
-        else:
-            self.updateLocation()
-            return self
+        return self.checkBoxOnMaps()
+
     
     def moveLeft(self):
+        
         self.levelMap.currBox.moveLeft()
-        if not self.checkBoxOnMaps():
-            return False
-        else:
-            self.updateLocation()
-            return self
+        return self.checkBoxOnMaps()
 
-    def updateLocation(self):
-        self.currBoxLocation = self.levelMap.currBox.location
-        self.currMap == self.levelMap.loadedMap
+    
+        
+        
         
 
     def checkBoxOnMaps(self):
-        return self.levelMap.refreshBox()
+        return self.levelMap.onFloor()
 
     
     def checkGoal(self):
         return self.levelMap.checkGoal()
     
     
-    def drawMaps(self, path=None):
-        height, width = self.size
-        levelMap = self.currMap
-        for x in range(width):
-            for y in range(height):
-                tile = levelMap[int(y)][int(x)]
-                if tile.type != 0:
-                    # if [y, x] in self.current or [y, x] in path:
-                    #     Cube.drawBox(position=(x, y), size=(1, 1, -0.3), face_color=Tile.mark)
-                    Cube.drawBox(position=(x, y), size=(1, 1, -0.3), face_color=tile.colors)
-                else:
-                    if tile.obj != None and tile.obj.symbol == "$":
-                        Cube.drawBox(position=(x, y), size=(1, 1, -0.3), face_color=tile.colors)
+    
 
-    def drawBox(self):
-        if len(self.currBoxLocation) == 2:
-            currLocation = self.currBoxLocation
-        else: currLocation = [self.currBoxLocation[0], self.currBoxLocation[0]]
-
-        if self.levelMap.currBox.isStanding():
-            Cube.drawBox(position=(currLocation[0][1], currLocation[0][0]), size=(1, 1, 2), border_color=(0.8, 0.8, 0.8))
-        elif self.levelMap.currBox.isVertical():
-            Cube.drawBox(position=(currLocation[1][1], currLocation[1][0]), size=(1, 2, 1), border_color=(0.8, 0.8, 0.8))
-        elif self.levelMap.currBox.isHorizontal():
-            Cube.drawBox(position=(currLocation[0][1], currLocation[0][0]), size=(2, 1, 1), border_color=(0.8, 0.8, 0.8))
     
     '''def drawStartBox(self):
         if len(self.boxStartLocation) == 2:

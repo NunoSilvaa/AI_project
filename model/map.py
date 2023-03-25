@@ -1,5 +1,6 @@
 import simplejson as json
 from model.box import Box
+from drawing.box import Box as Cube
 from model.tiles import tile
 class goal:
     def __init__(self, symbol, location):
@@ -63,11 +64,6 @@ class maps:
                     line.append(newtile)
             self.loadedMap.append(line)
     
-    def refreshBox(self):
-        if not self.__onFloor(self.currBox):
-            self.currBox.location = self.currBox.preLocation
-            return False
-        return True
 
     
     def __isGoal(self):
@@ -75,7 +71,7 @@ class maps:
 
     def checkGoal(self):
         return self.currBox.isStanding()  and self.__isGoal()
-     
+
     def __isValid(self, box):
         if len(box.location) == 1:
             x , y = box.location[0]
@@ -87,19 +83,48 @@ class maps:
                     return False
             return True
     
-    def __onFloor(self, box):
+    def onFloor(self):
         width, height = self.size
-        if len(box.location) == 1:
-            y, x = box.location[0]
+        if len(self.currBox.location) == 1:
+            y, x = self.currBox.location[0]
             if y < 0 or y >= width or x < 0 or x >= height:
                 return False
-            return self.__isValid(box)
-        elif len(box.location) == 2:
-            for child in box.location:
+            return self.__isValid(self.currBox)
+        elif len(self.currBox.location) == 2:
+            for child in self.currBox.location:
                 y , x = child
                 if y < 0 or y >= width or x < 0 or x >= height:
                     return False
-            return self.__isValid(box)
+            return self.__isValid(self.currBox)
+        
+
+    def drawMaps(self, path=None):
+        height, width = self.size
+        levelMap = self.loadedMap
+        for x in range(width):
+            for y in range(height):
+                tile = levelMap[int(y)][int(x)]
+                if tile.type != 0:
+                    # if [y, x] in self.current or [y, x] in path:
+                    #     Cube.drawBox(position=(x, y), size=(1, 1, -0.3), face_color=Tile.mark)
+                    Cube.drawBox(position=(x, y), size=(1, 1, -0.3), face_color=tile.colors)
+                else:
+                    if tile.obj != None and tile.obj.symbol == "$":
+                        Cube.drawBox(position=(x, y), size=(1, 1, -0.3), face_color=tile.colors)
+
+    def drawBox(self):
+        if len(self.currBox.location) == 2:
+            currLocation = self.currBox.location
+        else: currLocation = [self.currBox.location[0], self.currBox.location[0]]
+
+        if self.currBox.isStanding():
+            Cube.drawBox(position=(currLocation[0][1], currLocation[0][0]), size=(1, 1, 2), border_color=(0.8, 0.8, 0.8))
+        elif self.currBox.isVertical():
+            Cube.drawBox(position=(currLocation[1][1], currLocation[1][0]), size=(1, 2, 1), border_color=(0.8, 0.8, 0.8))
+        elif self.currBox.isHorizontal():
+            Cube.drawBox(position=(currLocation[0][1], currLocation[0][0]), size=(2, 1, 1), border_color=(0.8, 0.8, 0.8))
+       
+
 
 
     '''def printCurrent(self):
