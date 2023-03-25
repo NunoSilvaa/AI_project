@@ -22,6 +22,7 @@ class Control:
         self.startMap = self.levelMap.loadedMap[:]
         self.currMap = self.startMap
         self.size = levelMap.size
+        self.moves = (self.moveUp, self.moveDown, self.moveRight, self.moveLeft)
 
 
     def moveUp(self):   
@@ -30,7 +31,7 @@ class Control:
             return False
         else:
             self.updateLocation()
-            return True 
+            return self 
     
     def moveDown(self):
         self.levelMap.currBox.moveDown()
@@ -38,7 +39,7 @@ class Control:
             return False
         else:
             self.updateLocation() 
-            return True 
+            return self 
     
     def moveRight(self):
         self.levelMap.currBox.moveRight()
@@ -46,7 +47,7 @@ class Control:
             return False
         else:
             self.updateLocation()
-            return True 
+            return self
     
     def moveLeft(self):
         self.levelMap.currBox.moveLeft()
@@ -54,7 +55,7 @@ class Control:
             return False
         else:
             self.updateLocation()
-            return True
+            return self
 
     def updateLocation(self):
         self.currBoxLocation = self.levelMap.currBox.location
