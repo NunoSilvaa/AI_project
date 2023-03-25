@@ -53,7 +53,7 @@ def main(level=Level.lv1, Play=True, view='3'):
                 return
         state.drawMaps()
         state.drawBox()
-        # state.print_maps()
+        #state.print_maps()
         display.update()
 
         if state.checkGoal():
@@ -77,4 +77,4 @@ if __name__=="__main__":
             print("Error! Please read file README.md for more details. thanks")
     else:
         # Edit here
-        main(level=Level.lv1, Play=False, view='3')
+        main(level=Level.lv1, Play=True, view='3')

@@ -102,7 +102,7 @@ class maps:
             return self.__isValid(box)
 
 
-    def printCurrent(self):
+    '''def printCurrent(self):
         for i in self.loadedMap:
             print("------" * self.size[1])
             print('{0: <3}'.format("|"), end='')
@@ -121,6 +121,6 @@ class maps:
                 print('{0: <2}'.format(content),"|", end='')
                 print('{0: <2}'.format(""), end='')
             print("\n",end='')
-        print("------" * self.size[1])
+        print("------" * self.size[1])'''
 
     
