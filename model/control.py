@@ -4,7 +4,7 @@ from model.map import maps as levelMap
 from model.tiles import tile as Tile
 
 class Control:
-    Play = False
+    
     def __init__(self, levelMap: levelMap):
         if levelMap is None:
             print("Maps not None")
