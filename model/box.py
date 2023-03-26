@@ -12,7 +12,7 @@ class Box:
         self.symbol = symbol
         self.active = False
         self.location = location
-        self.preLocation = location
+        
 
 
     def moveUp(self):
@@ -119,7 +119,6 @@ class Box:
             else: return Direction.standing
             
     def changeLocation(self, location):
-        self.pre_location = self.location
         self.location = location
 
     def on(self):

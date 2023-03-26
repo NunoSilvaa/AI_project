@@ -44,6 +44,7 @@ class maps:
             self.__loadMap()
 
         else: print("Path_to_level not None")
+        self.files = None
     
     def __loadMap(self):
         # Load tiles to Maps

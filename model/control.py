@@ -14,33 +14,28 @@ class Control:
         self.levelMap = levelMap
 
 
-    def moveUp(self):  
+    def moveUp(self):
+
         self.levelMap.currBox.moveUp()
-        return self.checkBoxOnMaps()
+        return self.levelMap.onFloor()
     
     def moveDown(self):
         
         self.levelMap.currBox.moveDown()
-        return self.checkBoxOnMaps()
+        return self.levelMap.onFloor()
     
     def moveRight(self):
         
         self.levelMap.currBox.moveRight()
-        return self.checkBoxOnMaps()
+        return self.levelMap.onFloor()
 
     
     def moveLeft(self):
         
         self.levelMap.currBox.moveLeft()
-        return self.checkBoxOnMaps()
+        return self.levelMap.onFloor()
 
     
-        
-        
-        
-
-    def checkBoxOnMaps(self):
-        return self.levelMap.onFloor()
 
     
     def checkGoal(self):
