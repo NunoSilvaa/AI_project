@@ -1,8 +1,8 @@
 {"level": 1,
     "size": [6,15],
     "start": [3,1],"end": [1,13],
-    "box": {"state": 2,"symbol": "#","location": [[3,1]]},
-    "tiles": {"orange": 2,"floor": 1,"void": 0},
+    "box": {"symbol": "#","location": [[3,1]]},
+    "tiles": {"floor": 1,"void": 0},
   "maps": [
   [0,0,0,0,0,0,1,1,1,1,0,0,1,1,1],
   [1,1,1,1,0,0,1,1,1,1,0,0,1,0,1],

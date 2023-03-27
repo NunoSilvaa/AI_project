@@ -24,7 +24,12 @@ class TreeNode:
         if right != None:
             self.add_child(TreeNode(right,self))
 
-
-
+    def get_path(self):
+        path = []
+        node = self
+        while node != None:
+            path.insert(0, node.state.location)
+            node = node.parent
+        return path
 
         

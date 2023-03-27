@@ -18,7 +18,6 @@ def bfs(root: TreeNode, goal: TreeNode):
             return curr_node
         curr_node.create_children()
         for child in curr_node.children:
-            print(child.state.location)
             if child.state not in visited:
                 visited.append(child.state)
                 queue.append(child)
