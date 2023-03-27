@@ -5,7 +5,7 @@ from drawing.display import Display
 from model.map import maps
 from model.control import Control
 import model.TreeNode as TreeNode
-from model.Algorithms import bfs
+from model.Algorithms import *
 from model.state import State
 
 
@@ -46,14 +46,14 @@ def draw_path_3D(solution, timesleep=0.5, level=Level.lv1, map_size = (0,0),disp
         for path in solution:
             choiselv.currBox.location = path
 
-            for event in pygame.event.get():
+            '''for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
-                    return
+                    return'''
             
             
             
-            choiselv.currBox.drawBox() 
+            choiselv.currBox.drawBox()
             choiselv.drawMaps()
             display.update()
             pygame.time.delay(420)
@@ -113,6 +113,8 @@ def main(level=Level.lv1, Play=True,Algorithm=None):
                 print("LOSER!")
                 return
         else:
+            root = TreeNode.TreeNode(State(Maps.currBox.location,Maps))
+            goal = TreeNode.TreeNode(State([Maps.end],Maps))
 
             if Algorithm is None:
                 print("An algorithm must be selected!")
@@ -120,14 +122,32 @@ def main(level=Level.lv1, Play=True,Algorithm=None):
             else:
                 if Algorithm == "BFS":
 
-                    root = TreeNode.TreeNode(State(Maps.currBox.location,Maps))
-                    goal = TreeNode.TreeNode(State([Maps.end],Maps))
+                    
                     solution = bfs(root, goal)
                     if solution != None:
                         path = solution.get_path()
                         draw_path_3D(path, level=level, map_size=(size[0], size[1]),display=display)
                     return
-                            
+                elif Algorithm == "DFS":
+                    solution = dfs(root, goal)
+                    if solution != None:
+                        path = solution.get_path()
+                        draw_path_3D(path, level=level, map_size=(size[0], size[1]),display=display)
+                    return
+                elif Algorithm == "IDDFS":
+                    solution = iddfs(root, goal,100 )
+                    if solution != None:
+                        path = solution.get_path()
+                        draw_path_3D(path, level=level, map_size=(size[0], size[1]),display=display)
+                    return
+                elif Algorithm == "UC":
+                    solution = uniform_cost_search(root,goal)
+                    if solution != None:
+                        path = solution.get_path()
+                        draw_path_3D(path, level=level, map_size=(size[0], size[1]),display=display)
+                    return
+
+
                     
                     
                     
@@ -155,7 +175,7 @@ if __name__=="__main__":
             print("Error! Please read file README.md for more details. thanks")
     else:
         # Edit here
-        main(level=Level.lv10, Play=True, Algorithm="BFS")
+        main(level=Level.lv1, Play=True, Algorithm="UC")
 
 
 

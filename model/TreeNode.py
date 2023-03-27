@@ -5,6 +5,12 @@ class TreeNode:
         self.state = state
         self.parent = parent
         self.children = []
+        
+        
+        if parent != None:
+            self.depth = parent.depth + 1
+        else:
+            self.depth = 0
 
     def add_child(self, child_node):
         self.children.append(child_node)
