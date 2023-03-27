@@ -175,7 +175,7 @@ if __name__=="__main__":
             print("Error! Please read file README.md for more details. thanks")
     else:
         # Edit here
-        main(level=Level.lv1, Play=True, Algorithm="UC")
+        main(level=Level.lv1, Play=False, Algorithm="IDDFS")
 
 
 
