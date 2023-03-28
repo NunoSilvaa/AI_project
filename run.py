@@ -153,6 +153,7 @@ def main(level=Level.lv1, Play=True,Algorithm=None):
                         draw_path_3D(path, level=level, map_size=(size[0], size[1]),display=display)
                     
                 print(Algorithm + " took " + str(end - start) + " seconds to complete.")
+                print("Completed in " + str(len(solution.get_path())) + " moves.")
                 return
 
 
