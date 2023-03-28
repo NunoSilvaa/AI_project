@@ -1,12 +1,12 @@
 import pygame
 import sys
-import os
 from drawing.display import Display
 from model.map import maps
 from model.control import Control
 import model.TreeNode as TreeNode
 from model.Algorithms import *
 from model.state import State
+import time
 
 
 
@@ -120,32 +120,40 @@ def main(level=Level.lv1, Play=True,Algorithm=None):
                 print("An algorithm must be selected!")
                 return
             else:
+                start = time.time()
+                end = 0
                 if Algorithm == "BFS":
 
                     
                     solution = bfs(root, goal)
+                    end = time.time()
                     if solution != None:
                         path = solution.get_path()
                         draw_path_3D(path, level=level, map_size=(size[0], size[1]),display=display)
-                    return
+                    
                 elif Algorithm == "DFS":
                     solution = dfs(root, goal)
+                    end = time.time()
                     if solution != None:
                         path = solution.get_path()
                         draw_path_3D(path, level=level, map_size=(size[0], size[1]),display=display)
-                    return
+                    
                 elif Algorithm == "IDDFS":
                     solution = iddfs(root, goal,100 )
+                    end = time.time()
                     if solution != None:
                         path = solution.get_path()
                         draw_path_3D(path, level=level, map_size=(size[0], size[1]),display=display)
-                    return
+                    
                 elif Algorithm == "UC":
                     solution = uniform_cost_search(root,goal)
+                    end = time.time()
                     if solution != None:
                         path = solution.get_path()
                         draw_path_3D(path, level=level, map_size=(size[0], size[1]),display=display)
-                    return
+                    
+                print(Algorithm + " took " + str(end - start) + " seconds to complete.")
+                return
 
 
                     

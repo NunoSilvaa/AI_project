@@ -57,7 +57,6 @@ def iddfs(root: TreeNode, goal: TreeNode, max_depth: int):
     for i in range(max_depth):
         result = dls(root, goal, i)
         if result != None:
-            print(i)
             return result
     return None
 
