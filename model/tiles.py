@@ -12,6 +12,7 @@ class tile:
     mark = colors['mark']
     FLOOR = 1
     VOID = 0
+    EDGE = 2
     
     def __init__(self, typ, obj, location):
         self.type = typ
@@ -23,7 +24,7 @@ class tile:
         
     def setColor(self):
 
-        if self.type == 1:
+        if self.type == 1 or self.type == 2:
             self.colors = colors['gray']
 
 
@@ -42,7 +43,7 @@ class tile:
                         else: return False
                     else: return False
                 # floor
-                elif self.type == tile.FLOOR: 
+                elif self.type == tile.FLOOR or self.type == tile.EDGE: 
                     return True
         return False
 

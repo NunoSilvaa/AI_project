@@ -14,7 +14,7 @@ def bfs(root: TreeNode, goal: TreeNode):
         
         for child in curr_node.children:
             if child.state not in visited:
-                terrain_heuristic(child)
+                edge_heuristic(child)
                 print(child.heuristic)
                 visited.append(child.state)
                 queue.append(child)
@@ -127,10 +127,14 @@ def manhattan_distance(curr_node : TreeNode, goal : TreeNode):
     return None
 
 
-def terrain_heuristic(curr_node : TreeNode):
+def terrain_heuristic(curr_node : TreeNode,goal : TreeNode):
     heuristic = 0
     
     visited = []
+    if curr_node.state == goal.state:
+        heuristic += 50
+        curr_node.set_heuristic(heuristic)
+        return None
     for location in curr_node.state.location:
         top, bottom, left, right = False, False, False, False
         yL = location[0]
@@ -174,6 +178,39 @@ def terrain_heuristic(curr_node : TreeNode):
     
     curr_node.set_heuristic(heuristic)
     return None
+
+
+def edge_heuristic(curr_node : TreeNode, goal : TreeNode):
+    heuristic = 0
+    if curr_node.state.location == goal.state.location:
+        heuristic += 50
+        curr_node.set_heuristic(heuristic)
+        return None
+    
+    if len(curr_node.state.location) < 2:
+        yL = curr_node.state.location[0][0]
+        xL = curr_node.state.location[0][1]
+        if curr_node.state.statemap.loadedMap[yL][xL].type == 2:
+            heuristic += 2
+        curr_node.set_heuristic(heuristic)
+        
+    
+    else:
+        yL1 = curr_node.state.location[0][0]
+        xL1 = curr_node.state.location[0][1]
+        yL2 = curr_node.state.location[1][0]
+        xL2 = curr_node.state.location[1][1]
+        if curr_node.state.statemap.loadedMap[yL1][xL1].type == 2:
+            heuristic += 1
+        if curr_node.state.statemap.loadedMap[yL2][xL2].type == 2:
+            heuristic += 1
+        curr_node.set_heuristic(heuristic)
+        
+    
+    return None
+        
+        
+
 
 
         

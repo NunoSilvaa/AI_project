@@ -35,7 +35,7 @@ class maps:
             # End Location
             self.end = self.jsonObj["end"]
             # Types of tiles
-            self.tileTypes = [self.jsonObj["tiles"]["floor"], self.jsonObj["tiles"]["void"]]
+            self.tileTypes = [self.jsonObj["tiles"]["floor"], self.jsonObj["tiles"]["void"], self.jsonObj["tiles"]["edge"]] 
             # Current Box
             boxObj = self.jsonObj["box"]
             self.currBox = Box(boxObj["symbol"], boxObj["location"])
@@ -54,6 +54,9 @@ class maps:
             for j in range(self.size[1]):
                 if loadedMap[i][j] == self.tileTypes[0]: # rock tile
                     newtile = tile(1, None, [i, j])
+                    line.append(newtile)
+                elif loadedMap[i][j] == self.tileTypes[2]:
+                    newtile = tile(2, None, [i, j])
                     line.append(newtile)
                 elif loadedMap[i][j] == self.tileTypes[1]: # space title
                     newtile = tile(0, None, [i, j])
