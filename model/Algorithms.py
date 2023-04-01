@@ -14,6 +14,8 @@ def bfs(root: TreeNode, goal: TreeNode):
         
         for child in curr_node.children:
             if child.state not in visited:
+                terrain_heuristic(child)
+                print(child.heuristic)
                 visited.append(child.state)
                 queue.append(child)
     return None
@@ -123,6 +125,58 @@ def manhattan_distance(curr_node : TreeNode, goal : TreeNode):
         curr_node.set_heuristic(heuristic)
 
     return None
+
+
+def terrain_heuristic(curr_node : TreeNode):
+    heuristic = 0
+    
+    visited = []
+    for location in curr_node.state.location:
+        top, bottom, left, right = False, False, False, False
+        yL = location[0]
+        xL = location[1]
+        if yL > 0 :
+           if  curr_node.state.statemap.loadedMap[yL - 1][xL].type == 1 and (yL - 1, xL) not in visited and [yL - 1, xL] not in curr_node.state.location:
+                heuristic += 1
+                top = True
+                postion = [yL - 1, xL]
+                visited.append(postion)
+        if yL < curr_node.state.statemap.size[0] - 1:
+            if curr_node.state.statemap.loadedMap[yL + 1][xL].type == 1 and (yL + 1, xL) not in visited and [yL + 1, xL] not in curr_node.state.location:
+                heuristic += 1
+                bottom = True
+                postion = (yL + 1, xL)
+                visited.append(postion)
+        if xL > 0:
+            if curr_node.state.statemap.loadedMap[yL][xL - 1].type == 1 and (yL, xL - 1) not in visited and [yL, xL - 1] not in curr_node.state.location:
+                heuristic += 1
+                left = True
+                postion = (yL, xL - 1)
+                visited.append(postion)
+        if xL < curr_node.state.statemap.size[1] - 1:
+            if curr_node.state.statemap.loadedMap[yL][xL + 1].type == 1 and (yL, xL + 1) not in visited and [yL, xL + 1] not in curr_node.state.location:
+                heuristic += 1
+                right = True
+                postion = (yL, xL + 1)
+                visited.append(postion)
+        if top and left:
+            if curr_node.state.statemap.loadedMap[yL - 1][xL - 1].type == 1:
+                heuristic += 1
+        if top and right:
+            if curr_node.state.statemap.loadedMap[yL - 1][xL + 1].type == 1:
+                heuristic += 1
+        if bottom and left:
+            if curr_node.state.statemap.loadedMap[yL + 1][xL - 1].type == 1:
+                heuristic += 1
+        if bottom and right:
+            if curr_node.state.statemap.loadedMap[yL + 1][xL + 1].type == 1:
+                heuristic += 1
+    
+    curr_node.set_heuristic(heuristic)
+    return None
+
+
+        
 
 
 
