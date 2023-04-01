@@ -5,6 +5,7 @@ class TreeNode:
         self.state = state
         self.parent = parent
         self.children = []
+        self.heuristic = -1
         
         
         if parent != None:
@@ -37,5 +38,9 @@ class TreeNode:
             path.insert(0, node.state.location)
             node = node.parent
         return path
+    
+
+    def set_heuristic(self, heuristic):
+        self.heuristic = heuristic
 
         
