@@ -2,8 +2,11 @@
     "size": [6, 10],
     "start": [1,1],"end": [3, 7],
     "box": {"symbol": "#","location": [[1,1]]},
-    "tiles": {"floor": 1,"void": 0, "edge": 2},
-  "maps": [
+    "tiles": {"floor": 1,"void": 0, "edge": 2, "teleport": 3},
+    "teleports": {"tp1": [], "tp2": []},
+    
+    
+    "maps": [
   [2,2,2,0,0,0,0,0,0,0],
   [2,"#",2,2,2,2,0,0,0,0],
   [2,1,1,1,1,1,1,2,2,0],

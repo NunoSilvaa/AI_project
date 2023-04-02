@@ -35,10 +35,13 @@ class maps:
             # End Location
             self.end = self.jsonObj["end"]
             # Types of tiles
-            self.tileTypes = [self.jsonObj["tiles"]["floor"], self.jsonObj["tiles"]["void"], self.jsonObj["tiles"]["edge"]] 
+            self.tileTypes = [self.jsonObj["tiles"]["floor"], self.jsonObj["tiles"]["void"], self.jsonObj["tiles"]["edge"], self.jsonObj["tiles"]["teleport"]] 
             # Current Box
             boxObj = self.jsonObj["box"]
             self.currBox = Box(boxObj["symbol"], boxObj["location"])
+
+            #Teleports
+            self.teleports = [self.jsonObj["teleports"]["tp1"], self.jsonObj["teleports"]["tp2"]]
 
             # Load Maps
             self.__loadMap()
@@ -55,9 +58,19 @@ class maps:
                 if loadedMap[i][j] == self.tileTypes[0]: # rock tile
                     newtile = tile(1, None, [i, j])
                     line.append(newtile)
-                elif loadedMap[i][j] == self.tileTypes[2]:
+                elif loadedMap[i][j] == self.tileTypes[2]: # edge tile
                     newtile = tile(2, None, [i, j])
                     line.append(newtile)
+                
+                elif loadedMap[i][j] == self.tileTypes[3]:
+                    if self.teleports[0] == [i, j]:
+                        newtile = tile(3,None, [i, j], self.teleports[1])
+                    else:
+                        newtile = tile(3,None, [i, j], self.teleports[0])
+                    
+
+                    line.append(newtile)
+                
                 elif loadedMap[i][j] == self.tileTypes[1]: # space title
                     newtile = tile(0, None, [i, j])
                     if self.end == [i, j]:
@@ -119,25 +132,6 @@ class maps:
 
 
 
-    '''def printCurrent(self):
-        for i in self.loadedMap:
-            print("------" * self.size[1])
-            print('{0: <3}'.format("|"), end='')
-            for j in i:
-                if j.type == 0:
-                    content = " "
-                    if j.obj != None:
-                        if j.obj.symbol == "$":
-                            content = "$"
-                elif j.type == 1 or j.type == 2:
-                    if j.obj != None:
-                        content = j.obj.symbol
-                    else: content = j.type
-                if j.location in self.currBbox.location:
-                    content = "#"
-                print('{0: <2}'.format(content),"|", end='')
-                print('{0: <2}'.format(""), end='')
-            print("\n",end='')
-        print("------" * self.size[1])'''
+
 
     

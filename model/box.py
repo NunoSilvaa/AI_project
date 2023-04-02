@@ -94,6 +94,7 @@ class Box:
                 newYi = int(yi+1)
                 newLocation = [[newYi, xi]]
                 self.changeLocation(newLocation)
+        
     
     def getLocation(self):
         return self.location

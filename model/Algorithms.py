@@ -14,8 +14,8 @@ def bfs(root: TreeNode, goal: TreeNode):
         
         for child in curr_node.children:
             if child.state not in visited:
-                edge_heuristic(child)
-                print(child.heuristic)
+                
+                
                 visited.append(child.state)
                 queue.append(child)
     return None
