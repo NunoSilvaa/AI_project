@@ -212,6 +212,30 @@ def edge_heuristic(curr_node : TreeNode, goal : TreeNode):
         
 
 
+def chebyshev_distance(curr_node : TreeNode, goal : TreeNode):
+    heuristic = 0
+    if curr_node.state.location == goal.state.location:
+        heuristic += 50
+        curr_node.set_heuristic(heuristic)
+        return None
+    if len(curr_node.state.location) < 2:
+        yL = curr_node.state.location[0][0]
+        xL = curr_node.state.location[0][1]
+        yG = goal.state.location[0][0]
+        xG = goal.state.location[0][1]
+        heuristic = max(abs(yL - yG), abs(xL - xG))
+        curr_node.set_heuristic(heuristic)
+    else:
+        yL1 = curr_node.state.location[0][0]
+        xL1 = curr_node.state.location[0][1]
+        yL2 = curr_node.state.location[1][0]
+        xL2 = curr_node.state.location[1][1]
+        yG = goal.state.location[0][0]
+        xG = goal.state.location[0][1]
+        heuristic = max(abs(yL1 - yG), abs(xL1 - xG), abs(yL2 - yG), abs(xL2 - xG))
+        curr_node.set_heuristic(heuristic)
+    return None
+
 
         
 
