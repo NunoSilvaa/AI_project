@@ -123,8 +123,6 @@ def main(level=Level.lv1, Play=True,Algorithm=None):
                 start = time.time()
                 end = 0
                 if Algorithm == "BFS":
-
-                    
                     solution = bfs(root, goal)
                     end = time.time()
                     if solution != None:
@@ -144,7 +142,13 @@ def main(level=Level.lv1, Play=True,Algorithm=None):
                     if solution != None:
                         path = solution.get_path()
                         draw_path_3D(path, level=level, map_size=(size[0], size[1]),display=display)
-                    
+                
+                elif Algorithm == "GREADY":
+                    solution = greedy_search(root, goal)
+                    end = time.time()
+                    if solution != None:
+                        path = solution.get_path()
+                        draw_path_3D(path, level=level, map_size=(size[0], size[1]),display=display)
                 elif Algorithm == "UC":
                     solution = uniform_cost_search(root,goal)
                     end = time.time()
@@ -184,7 +188,7 @@ if __name__=="__main__":
             print("Error! Please read file README.md for more details. thanks")
     else:
         # Edit here
-        main(level=Level.lv4, Play=False, Algorithm="BFS")
+        main(level=Level.lv4, Play=False, Algorithm="GREADY")
 
 
 
