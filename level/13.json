@@ -3,6 +3,7 @@
       "start":[1,1],"end":[4,7],
       "box":{"state":2,"symbol":"#","location":[[1,1]]},
       "tiles":{"orange":2,"floor":1,"void":0},
+      "teleports": {"tp1": [], "tp2": []},
       "maps":[
       [1,1,1,0,0,0,0,0,0,0],
       [1,1,1,1,1,0,0,0,0,0],

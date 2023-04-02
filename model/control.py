@@ -14,25 +14,44 @@ class Control:
         self.levelMap = levelMap
 
 
+    def __check_teleport(self,tyle):
+        if tyle.type == 3:
+            return True
+        return False
+
     def moveUp(self):
+        
+        
 
         self.levelMap.currBox.moveUp()
+        tyle = self.levelMap.loadedMap[self.levelMap.currBox.location[0][0]][self.levelMap.currBox.location[0][1]]
+        if self.__check_teleport(tyle):
+            self.levelMap.currBox.location = [tyle.tpLocation]
         return self.levelMap.onFloor()
     
     def moveDown(self):
         
         self.levelMap.currBox.moveDown()
+        tyle = self.levelMap.loadedMap[self.levelMap.currBox.location[0][0]][self.levelMap.currBox.location[0][1]]
+        if self.__check_teleport(tyle):
+            self.levelMap.currBox.location = [tyle.tpLocation]
         return self.levelMap.onFloor()
     
     def moveRight(self):
         
         self.levelMap.currBox.moveRight()
+        tyle = self.levelMap.loadedMap[self.levelMap.currBox.location[0][0]][self.levelMap.currBox.location[0][1]]
+        if self.__check_teleport(tyle):
+            self.levelMap.currBox.location = [tyle.tpLocation]
         return self.levelMap.onFloor()
 
     
     def moveLeft(self):
         
         self.levelMap.currBox.moveLeft()
+        tyle = self.levelMap.loadedMap[self.levelMap.currBox.location[0][0]][self.levelMap.currBox.location[0][1]]
+        if self.__check_teleport(tyle):
+            self.levelMap.currBox.location = [tyle.tpLocation]
         return self.levelMap.onFloor()
 
     
@@ -45,26 +64,4 @@ class Control:
     
 
     
-    '''def drawStartBox(self):
-        if len(self.boxStartLocation) == 2:
-            currLocation = self.boxStartLocation
-        else: 
-            currLocation = [self.boxStartLocation[0], self.boxStartLocation[0]]
-        
-            BoxStart = Box("#", len(self.boxStartLocation), self.boxStartLocation)
-
-            if BoxStart.isStanding():
-                Cube.drawBox(position=(currLocation[0][1], currLocation[0][0]), size=(1, 1, 2), border_color=(0.8, 0.8, 0.8))
-            elif BoxStart.isVertical():
-                Cube.drawBox(position=(currLocation[1][1], currLocation[1][0]), size=(1, 2, 1), border_color=(0.8, 0.8, 0.8))
-            elif BoxStart.isHorizontal():
-                Cube.drawBox(position=(currLocation[0][1], currLocation[0][0]), size=(2, 1, 1), border_color=(0.8, 0.8, 0.8))'''
-    
-    '''def drawStartMaps(self):
-        height, width = self.size
-        startMap = self.startMap
-        for x in range(width):
-            for y in range(height):
-                tile = startMap[int(y)][int(x)]
-                if tile.type != 0:
-                    Cube.drawBox(position=(x, y), size=(1, 1, -0.3), face_color=tile.colors)'''
+   

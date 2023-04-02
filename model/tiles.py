@@ -13,25 +13,31 @@ class tile:
     FLOOR = 1
     VOID = 0
     EDGE = 2
+    TELEPORT = 3
     
-    def __init__(self, typ, obj, location):
+    def __init__(self, typ, obj, location,tpLocation = None):
         self.type = typ
         self.obj = obj
         self.location = location
         self.colors = colors['white']
         self.setColor()
+        self.tpLocation = tpLocation
+    
         
         
     def setColor(self):
 
-        if self.type == 1 or self.type == 2:
+        if self.type == 2 or self.type == 1:
             self.colors = colors['gray']
+
+        if self.type == 3:
+            self.colors = colors['orange']
 
 
         if self.obj != None:
             if '$' in str(self.obj.symbol):
                 self.colors = colors['yellow']
-             
+
     def checkTile(self, box):
         for child in box.location:
             if child == self.location:
@@ -43,7 +49,7 @@ class tile:
                         else: return False
                     else: return False
                 # floor
-                elif self.type == tile.FLOOR or self.type == tile.EDGE: 
+                else:
                     return True
         return False
 
