@@ -26,6 +26,7 @@ class Level:
     lv13 = "./level/13.json"
     lv14 = "./level/14.json"
     lv15 = "./level/15.json"
+    lv16 = "./level/16.json"
 
 def draw_path_3D(solution, timesleep=0.5, level=Level.lv1, map_size = (0,0),display = None):
     
@@ -73,7 +74,7 @@ def draw_path_3D(solution, timesleep=0.5, level=Level.lv1, map_size = (0,0),disp
 
 
     
-def main(level=Level.lv1, Play=True,Algorithm=None):
+def main(level=Level.lv1, Play=True,Algorithm=None,Heuristic=None):
     print("Processing...")
     Maps = maps(level)
     size = Maps.size
@@ -151,23 +152,17 @@ def main(level=Level.lv1, Play=True,Algorithm=None):
                     if solution != None:
                         path = solution.get_path()
                         draw_path_3D(path, level=level, map_size=(size[0], size[1]),display=display)
+
+                elif Algorithm == "A*":
+                        solution = a_star(root,goal, Heuristic)
+                        end = time.time()
+                        if solution != None:
+                            path = solution.get_path()
+                            draw_path_3D(path, level=level, map_size=(size[0], size[1]),display=display)
                     
                 print(Algorithm + " took " + str(end - start) + " seconds to complete.")
                 print("Completed in " + str(len(solution.get_path())) + " moves.")
                 return
-
-
-                    
-                    
-                    
-
-                    
-                    
-
-
-
-          
-   
 
 if __name__=="__main__":
     if len(sys.argv) > 2:
@@ -184,7 +179,7 @@ if __name__=="__main__":
             print("Error! Please read file README.md for more details. thanks")
     else:
         # Edit here
-        main(level=Level.lv4, Play=False, Algorithm="BFS")
+        main(level=Level.lv1, Play=False, Algorithm="A*", Heuristic="manhattan")
 
 
 

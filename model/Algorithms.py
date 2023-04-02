@@ -179,7 +179,6 @@ def terrain_heuristic(curr_node : TreeNode,goal : TreeNode):
     curr_node.set_heuristic(heuristic)
     return None
 
-
 def edge_heuristic(curr_node : TreeNode, goal : TreeNode):
     heuristic = 0
     if curr_node.state.location == goal.state.location:
@@ -235,6 +234,38 @@ def chebyshev_distance(curr_node : TreeNode, goal : TreeNode):
         heuristic = max(abs(yL1 - yG), abs(xL1 - xG), abs(yL2 - yG), abs(xL2 - xG))
         curr_node.set_heuristic(heuristic)
     return None
+
+
+def a_star(root : TreeNode, goal : TreeNode, heuristic : str):
+
+    stack = []
+    stack.append(root)
+    visited = [root.state]
+
+
+    while stack:
+        curr_node = stack.pop(0)
+        if curr_node.state == goal.state:
+            return curr_node
+        curr_node.create_children()
+        for child in curr_node.children:
+            if child.state not in visited:
+                if heuristic == "manhattan":
+                    manhattan_distance(child, goal)
+                elif heuristic == "terrain":
+                    terrain_heuristic(child, goal)
+                elif heuristic == "chebyshev":
+                    chebyshev_distance(child, goal)
+                elif heuristic == "edge":
+                    edge_heuristic(child, goal)
+                visited.append(child.state)
+                stack.append(child)
+                print(child.heuristic)
+            stack = sorted(stack,key = lambda x : x.heuristic , reverse = False)
+
+
+
+
 
 
         
