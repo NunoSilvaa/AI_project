@@ -289,7 +289,6 @@ def greedy_search(root : TreeNode, goal_node : TreeNode, heuristic : str):
                     edge_heuristic(child, goal_node)
                 explored.append(child.state)
                 stack.append(child)
-                print(child.heuristic)
         stack.sort(key = lambda x: x.heuristic)
             
 

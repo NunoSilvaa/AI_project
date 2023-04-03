@@ -74,11 +74,7 @@ def draw_path_3D(solution, timesleep=0.5, level=Level.lv1, map_size = (0,0),disp
 
 
     
-<<<<<<< HEAD
 def main(level=Level.lv1, Play=True,Algorithm=None,Heuristic=None):
-=======
-def main(level=Level.lv1, Play=True,Algorithm=None, Heuristic = None):
->>>>>>> greedy
     print("Processing...")
     Maps = maps(level)
     size = Maps.size
@@ -149,7 +145,7 @@ def main(level=Level.lv1, Play=True,Algorithm=None, Heuristic = None):
                         draw_path_3D(path, level=level, map_size=(size[0], size[1]),display=display)
                 
                 elif Algorithm == "GREADY":
-                    solution = greedy_search(root, goal)
+                    solution = greedy_search(root, goal, Heuristic)
                     end = time.time()
                     if solution != None:
                         path = solution.get_path()
@@ -186,11 +182,4 @@ if __name__=="__main__":
             print("Error! Please read file README.md for more details. thanks")
     else:
         # Edit here
-        main(level=Level.lv1, Play=False, Algorithm="GREEDY", Heuristic="manhattan")
-
-
-
-    
-
-
-
+        main(level=Level.lv1, Play=False, Algorithm="A*", Heuristic="manhattan")
