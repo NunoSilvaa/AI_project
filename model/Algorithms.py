@@ -261,7 +261,7 @@ def a_star(root : TreeNode, goal : TreeNode, heuristic : str):
                 visited.append(child.state)
                 stack.append(child)
                 print(child.heuristic)
-            stack = sorted(stack,key = lambda x : x.heuristic , reverse = False)
+            stack.sort(key = lambda x : x.depth + x.heuristic)
 
 
 

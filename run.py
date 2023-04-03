@@ -182,4 +182,4 @@ if __name__=="__main__":
             print("Error! Please read file README.md for more details. thanks")
     else:
         # Edit here
-        main(level=Level.lv1, Play=False, Algorithm="A*", Heuristic="manhattan")
+        main(level=Level.lv2, Play=False, Algorithm="A*", Heuristic="manhattan")
