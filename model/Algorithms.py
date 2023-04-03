@@ -237,28 +237,28 @@ def chebyshev_distance(curr_node : TreeNode, goal : TreeNode):
     return None
 
 def greedy_search(root : TreeNode, goal_node : TreeNode, heuristic : str):
-    frontier = []
-    explored = []
-    frontier.append(root)
-    while frontier:
-        curr_node = frontier.pop(0)
-        explored.append(curr_node)
+    stack = []
+    stack.append(root)
+    explored = [root.state]
+    while stack:
+        curr_node = stack.pop(0)
         if curr_node.state == goal_node.state:
             return curr_node
+        curr_node.create_children()
         for child in curr_node.children:
-            if child not in explored:
+            if child.state not in explored:
                 if heuristic == "manhattan":
-                    manhattan_distance(child, goal)
+                    manhattan_distance(child, goal_node)
                 elif heuristic == "terrain":
-                    terrain_heuristic(child, goal)
+                    terrain_heuristic(child, goal_node)
                 elif heuristic == "chebyshev":
-                    chebyshev_distance(child, goal)
+                    chebyshev_distance(child, goal_node)
                 elif heuristic == "edge":
-                    edge_heuristic(child, goal)
-                frontier.append(child.state)
+                    edge_heuristic(child, goal_node)
+                explored.append(child.state)
+                stack.append(child)
                 print(child.heuristic)
-        frontier.sort(key = lambda x: x.heuristic)
-    return None
+        stack.sort(key = lambda x: x.heuristic)
         
 
 def absolute_distance(node1 : TreeNode, node2 : TreeNode):
