@@ -1,5 +1,4 @@
 import pygame
-import sys
 import pygame_menu
 from drawing.display import Display
 from model.map import maps
