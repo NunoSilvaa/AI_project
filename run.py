@@ -27,6 +27,7 @@ class Level:
     lv14 = "./level/14.json"
     lv15 = "./level/15.json"
     lv16 = "./level/16.json"
+    lv17 = "./level/17.json"
 
 def draw_path_3D(solution, timesleep=0.5, level=Level.lv1, map_size = (0,0),display = None):
     
@@ -47,10 +48,7 @@ def draw_path_3D(solution, timesleep=0.5, level=Level.lv1, map_size = (0,0),disp
         for path in solution:
             choiselv.currBox.location = path
 
-            '''for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    return'''
+            
             
             
             
@@ -86,7 +84,7 @@ def main(level=Level.lv1, Play=True,Algorithm=None,Heuristic=None):
     
     print("Press space Key to Exit!")
     while True:
-        # os.system("clear")
+        
         if Play:
             
             
@@ -182,4 +180,7 @@ if __name__=="__main__":
             print("Error! Please read file README.md for more details. thanks")
     else:
         # Edit here
-        main(level=Level.lv2, Play=False, Algorithm="A*", Heuristic="manhattan")
+        main(level=Level.lv17, Play=False, Algorithm="GREADY", Heuristic="terrain")
+
+
+        

@@ -1,7 +1,7 @@
 {"level": 16,
     "size": [10,15],
     "start": [1,13],"end": [8,1],
-    "box": {"state": 2,"symbol": "#","location": [[1,13]]},
+    "box": {"symbol": "#","location": [[1,13]]},
     "tiles": {"floor": 1,"void": 0, "edge": 2, "teleport": 3},
     "teleports": {"tp1": [], "tp2": []},
   "maps": [

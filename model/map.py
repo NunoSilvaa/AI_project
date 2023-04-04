@@ -9,7 +9,7 @@ class goal:
         
 class maps:
     def __init__(self, path=None):
-        self.files = None
+        
         self.jsonObj = None
         self.loadedMap = list()
         self.level = None
@@ -23,8 +23,8 @@ class maps:
 
     def loadLevel(self, path=None):
         if path != None:
-            self.files = open(path, "r")
-            self.jsonObj = json.loads(self.files.read())
+            files = open(path, "r")
+            self.jsonObj = json.loads(files.read())
 
             # Name Level
             self.level = self.jsonObj["level"]
@@ -47,7 +47,7 @@ class maps:
             self.__loadMap()
 
         else: print("Path_to_level not None")
-        self.files = None
+        
     
     def __loadMap(self):
         # Load tiles to Maps
@@ -122,8 +122,7 @@ class maps:
             for y in range(height):
                 tile = levelMap[int(y)][int(x)]
                 if tile.type != 0:
-                    # if [y, x] in self.current or [y, x] in path:
-                    #     Cube.drawBox(position=(x, y), size=(1, 1, -0.3), face_color=Tile.mark)
+                    
                     Cube.drawBox(position=(x, y), size=(1, 1, -0.3), face_color=tile.colors)
                 else:
                     if tile.obj != None and tile.obj.symbol == "$":

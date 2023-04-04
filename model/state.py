@@ -1,4 +1,4 @@
-from model.map import maps
+
 import copy
 class State:
     
